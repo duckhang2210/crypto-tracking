@@ -1,14 +1,14 @@
 import React, { useEffect, useState} from 'react'
 import coinGecko from '../api/coiGecko'
-import CoinDetails from './CoinDetails'
+import Coin from './Coin'
 
 const CoinList = () => {
     const [coins, setCoins] = useState([])
     const [search, setSearch] = useState('');
-    const [isLoading, setIsLoading] = useState(false)
+    
     useEffect( () => {
         const fetchData = async () => {
-            setIsLoading(true)
+            
             const response = await coinGecko.get('/coins/markets',{
                 params: {
                     'vs_currency': 'usd',
@@ -20,7 +20,7 @@ const CoinList = () => {
             })
 
             setCoins(response.data)
-            setIsLoading(false)
+            
         }
         fetchData()
     },[])
@@ -47,8 +47,9 @@ const CoinList = () => {
 				</form>
 			</div>
 			{filterCoins.map((coin) => {
+				
 				return (
-					<CoinDetails
+					<Coin
 						key={coin.id}
 						name={coin.name}
 						image={coin.image}

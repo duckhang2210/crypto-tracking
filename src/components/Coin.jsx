@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const CoinDetails = ({
+const Coin = ({
     image,
 	name,
 	symbol,
@@ -10,7 +11,7 @@ const CoinDetails = ({
 	priceChange
 }) => {
     return (
-        <div className='coin-container'>
+    <Link to={`/coin/${symbol}`} className='coin-container'>
         <div className='coin-row'>
             <div className='coin'>
                 <img src={image} alt='crypto' />
@@ -30,8 +31,8 @@ const CoinDetails = ({
                 </p>
             </div>
         </div>
-    </div>
+    </Link>
     )
 }
 
-export default CoinDetails
+export default Coin
